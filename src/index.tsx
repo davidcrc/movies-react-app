@@ -4,7 +4,7 @@ import './index.css';
 
 ReactDOM.render(
   // <React.StrictMode>
-    <div>HOLA MUNDO</div>,
+  <div>HOLA MUNDO</div>,
   // </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
