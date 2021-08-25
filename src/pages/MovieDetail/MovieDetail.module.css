@@ -1,0 +1,33 @@
+/* Display flex y flex-wrap empuja el conteido para abajo cuando no cabe */
+.detailsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.col {
+  max-width: 400px;
+  margin: 15px;
+  height: 80%;
+}
+
+.movideDetails {
+  justify-content: left;
+}
+
+.movieImage {
+  border-radius: 15px;
+}
+
+.movieRating {
+  display: flex;
+}
+
+.movieRating p {
+  margin-right: 15px;
+}
+
+.genre {
+  color: #8697a5;
+}

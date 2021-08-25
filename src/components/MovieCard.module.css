@@ -3,6 +3,11 @@
   font-size: 1.5rem;
 }
 
+.movieCard:hover{
+  transition: transform .5s ease;
+  transform: scale(1.15);
+}
+
 .movieImage {
   border-radius: 10px;
   background-color: azure;
