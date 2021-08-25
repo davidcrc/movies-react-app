@@ -22,6 +22,7 @@
 
 .movieRating {
   display: flex;
+  align-items: center;
 }
 
 .movieRating p {

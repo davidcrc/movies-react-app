@@ -21,3 +21,22 @@ npm i react-router-dom
 ```sh
 npm i --save-dev @types/react-router-dom
 ```
+> Example
+
+```tsx
+<Route exact path="/movie/:moviedId">
+  <MovieDetail />
+</Route>
+```
+- use this hook
+```tsx
+const { moviedId } = useParams();
+```
+## Rating - https://www.geeksforgeeks.org/how-to-use-rating-component-in-reactjs/
+
+```sh
+npm install @material-ui/core
+```
+```sh
+npm install @material-ui/lab
+```
