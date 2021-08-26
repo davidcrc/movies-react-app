@@ -7,9 +7,9 @@ import { Rating } from '@material-ui/lab';
 import { useParams } from 'react-router-dom';
 import { getMovieByIdApi } from '../../api/movies';
 import Modalvideo from './ModalVideo';
-// import 'react-responsive-modal/styles.css';
-// import { Modal } from 'react-responsive-modal';
-// import ReactPlayer from 'react-player';
+import IconButton from '@material-ui/core/IconButton';
+import PlayCircleFilled from '@material-ui/icons/PlayCircleFilled';
+
 interface Props {
   movie?: any;
 }
@@ -42,7 +42,9 @@ function MovieTrailer(props: MovieTrailerProps) {
 
   return (
     <div className={styles.detailsContainer}>
-      <button onClick={() => setOpenModal(true)}>Open modal</button>
+      <IconButton aria-label="delete" onClick={() => setOpenModal(true)} >
+        <PlayCircleFilled className={styles.buttonPlay} />
+      </IconButton>
     </div>
   );
 }
@@ -80,7 +82,7 @@ function MovieRating(props: MovieRatingProps) {
       <Rating
         name="Rating Label"
         value={media}
-        precision={0.5}
+        precision={0.1}
         style={{ marginRight: 10 }}
         readOnly
       />

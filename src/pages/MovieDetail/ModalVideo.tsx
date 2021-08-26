@@ -11,14 +11,10 @@ interface Props {
 }
 
 function Modalvideo({ openModal, setOpenModal, videoId }: Props): ReactElement {
-  // const [openModal, setOpenModal] = useState(false);
-  // // const urlVideo =`https://www.youtube.com/embed/${videoId}?controls=0&showinfo=0`
-  // const urlVideo =`https://www.youtube.com/watch?v=${videoId}`
-  // console.log("url video", urlVideo);
   const [video, setVideo] = useState(null);
   const getVideoMovie = async (idMovie: number) => {
     const response = await getVideoMovieApi(idMovie);
-    console.log('el resp', response);
+    // console.log('el resp', response);
     let idVideo: null = null;
     response.results.forEach((video: any, index: number) => {
       if (video.site === 'YouTube' && !idVideo) {
@@ -44,6 +40,8 @@ function Modalvideo({ openModal, setOpenModal, videoId }: Props): ReactElement {
           width: '100%',
           padding: 'unset',
           height: '100%',
+          display: 'flex',
+          backgroundColor: 'transparent',
           alignItems: 'center',
         },
         overlay: {
@@ -55,8 +53,8 @@ function Modalvideo({ openModal, setOpenModal, videoId }: Props): ReactElement {
       }}
       center>
       <ReactPlayer
-        width="100%"
-        height="100%"
+        width="calc(100% - 30px)"
+        height="calc(100vh - 100px)"
         url={`https://www.youtube.com/watch?v=${video}`}
       />
     </Modal>

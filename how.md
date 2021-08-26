@@ -40,6 +40,9 @@ npm install @material-ui/core
 ```sh
 npm install @material-ui/lab
 ```
+```sh
+npm install @material-ui/icons
+```
 
 ## Modal
 
