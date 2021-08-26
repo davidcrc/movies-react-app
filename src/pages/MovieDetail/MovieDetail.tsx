@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import movie from '../../api/movie.json';
+// import movie from '../../api/movie.json';
 import styles from './MovieDetail.module.css';
 import { API_BASE_PATH_IMG } from '../../utils/constants';
 import defaultImage from '../../assets/default-image.png';
@@ -9,6 +9,7 @@ import { getMovieByIdApi } from '../../api/movies';
 import Modalvideo from './ModalVideo';
 import IconButton from '@material-ui/core/IconButton';
 import PlayCircleFilled from '@material-ui/icons/PlayCircleFilled';
+import Spinner from '../../components/Spinner';
 
 interface Props {
   movie?: any;
@@ -42,7 +43,7 @@ function MovieTrailer(props: MovieTrailerProps) {
 
   return (
     <div className={styles.detailsContainer}>
-      <IconButton aria-label="delete" onClick={() => setOpenModal(true)} >
+      <IconButton aria-label="delete" onClick={() => setOpenModal(true)}>
         <PlayCircleFilled className={styles.buttonPlay} />
       </IconButton>
     </div>
@@ -100,19 +101,22 @@ export default function MovieDetail(props: Props): ReactElement {
   // console.log('parama', props);
   const [movie, setMovie] = useState<any>(null);
   const { moviedId } = useParams<ParamTypes>();
-  // const { title, poster_path, overview, release_date } = movie;
+  const [isLoading, setIsLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
 
   const getMovieById = async (moviedId: string) => {
     const response = await getMovieByIdApi(moviedId);
     console.log('res by id', response);
     setMovie(response);
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getMovieById(moviedId);
-  }, []);
+  }, [moviedId]);
 
+  if (isLoading) return <Spinner />;
   if (!movie) return <div></div>;
 
   return (
@@ -134,11 +138,13 @@ export default function MovieDetail(props: Props): ReactElement {
           </div>
         </div>
       </div>
-      {openModal && <Modalvideo
-        openModal={openModal}
-        setOpenModal={setOpenModal}
-        videoId={movie.id}
-      />}
+      {openModal && (
+        <Modalvideo
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          videoId={movie.id}
+        />
+      )}
     </>
   );
 }
