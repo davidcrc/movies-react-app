@@ -23,3 +23,22 @@ a {
   font-size: 1.5rem;
   font-weight: bold;
 }
+.customModal {
+  background: #b2dbbf;
+  max-width: 1280px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
+}
+
+.react-player {
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 893px) {
+  .customModal {
+    width: 90vw;
+  }
+  
+}

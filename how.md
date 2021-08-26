@@ -40,3 +40,13 @@ npm install @material-ui/core
 ```sh
 npm install @material-ui/lab
 ```
+
+## Modal
+
+
+```sh
+npm i react-responsive-modal
+```
+```sh
+npm i react-player
+```

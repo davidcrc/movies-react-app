@@ -6,7 +6,10 @@ import defaultImage from '../../assets/default-image.png';
 import { Rating } from '@material-ui/lab';
 import { useParams } from 'react-router-dom';
 import { getMovieByIdApi } from '../../api/movies';
-
+import Modalvideo from './ModalVideo';
+// import 'react-responsive-modal/styles.css';
+// import { Modal } from 'react-responsive-modal';
+// import ReactPlayer from 'react-player';
 interface Props {
   movie?: any;
 }
@@ -32,14 +35,14 @@ function MovieImage(props: MovieImageProps) {
 }
 
 interface MovieTrailerProps {
-  setShowVideo: any;
+  setOpenModal: any;
 }
 function MovieTrailer(props: MovieTrailerProps) {
-  const { setShowVideo } = props;
+  const { setOpenModal } = props;
 
   return (
     <div className={styles.detailsContainer}>
-      <button>Play to modal</button>
+      <button onClick={() => setOpenModal(true)}>Open modal</button>
     </div>
   );
 }
@@ -96,10 +99,11 @@ export default function MovieDetail(props: Props): ReactElement {
   const [movie, setMovie] = useState<any>(null);
   const { moviedId } = useParams<ParamTypes>();
   // const { title, poster_path, overview, release_date } = movie;
+  const [openModal, setOpenModal] = useState(false);
 
   const getMovieById = async (moviedId: string) => {
     const response = await getMovieByIdApi(moviedId);
-    // console.log('res by id', response);
+    console.log('res by id', response);
     setMovie(response);
   };
 
@@ -110,23 +114,30 @@ export default function MovieDetail(props: Props): ReactElement {
   if (!movie) return <div></div>;
 
   return (
-    <div className={styles.detailsContainer}>
-      {/* <div className={styles.col}> */}
-      <MovieImage posterPath={movie.poster_path} title={movie.title} />
-      {/* </div> */}
-      <div className={`${styles.col} ${styles.movideDetails}`}>
-        <MovieTrailer setShowVideo={false} />
-        <MovieTitle movie={movie} />
-        <MovieRating
-          voteCount={movie.vote_count}
-          voteAverage={movie.vote_average}
-        />
-        <div style={{ color: '#8697a5' }}>
-          <p>{movie.overview}</p>
-          <p>Lanzamiento: {movie.release_date}</p>
+    <>
+      <div className={styles.detailsContainer}>
+        {/* <div className={styles.col}> */}
+        <MovieImage posterPath={movie.poster_path} title={movie.title} />
+        {/* </div> */}
+        <div className={`${styles.col} ${styles.movideDetails}`}>
+          <MovieTrailer setOpenModal={setOpenModal} />
+          <MovieTitle movie={movie} />
+          <MovieRating
+            voteCount={movie.vote_count}
+            voteAverage={movie.vote_average}
+          />
+          <div style={{ color: '#8697a5' }}>
+            <p>{movie.overview}</p>
+            <p>Lanzamiento: {movie.release_date}</p>
+          </div>
         </div>
       </div>
-    </div>
+      {openModal && <Modalvideo
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        videoId={movie.id}
+      />}
+    </>
   );
 }
 
