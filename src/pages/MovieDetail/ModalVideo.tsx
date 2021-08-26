@@ -35,13 +35,30 @@ function Modalvideo({ openModal, setOpenModal, videoId }: Props): ReactElement {
   const onCloseModal = () => setOpenModal(false);
 
   return (
-    <Modal open={openModal} onClose={onCloseModal} center classNames={{
-      modal: 'customModal',
-    }}>
-      {/* <h2>Simple centered modal</h2> */}
-      {/* <ReactPlayer url={`https://www.youtube.com/embed/${video}?controls=0&showinfo=0`} /> */}
-      <ReactPlayer width='100%'
-          height='100%' url={`https://www.youtube.com/watch?v=${video}`} />
+    <Modal
+      open={openModal}
+      onClose={onCloseModal}
+      styles={{
+        modal: {
+          maxWidth: 'unset',
+          width: '100%',
+          padding: 'unset',
+          height: '100%',
+          alignItems: 'center',
+        },
+        overlay: {
+          background: 'rgba(0, 0, 0, 0.5)',
+        },
+        closeButton: {
+          background: 'yellow',
+        },
+      }}
+      center>
+      <ReactPlayer
+        width="100%"
+        height="100%"
+        url={`https://www.youtube.com/watch?v=${video}`}
+      />
     </Modal>
   );
 }
