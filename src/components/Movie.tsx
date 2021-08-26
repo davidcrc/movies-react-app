@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { API_BASE_PATH_IMG } from '../utils/constants';
 import styles from './MovieCard.module.css';
+import defaultImage from '../assets/default-image.png';
 
 interface Props {
   movie: any;
@@ -8,7 +9,10 @@ interface Props {
 
 export default function Movie(props: Props): ReactElement {
   const { title, poster_path } = props.movie;
-  const imageUrl = `${API_BASE_PATH_IMG}${poster_path}`;
+  // const imageUrl = `${API_BASE_PATH_IMG}${poster_path}`;
+  const imageUrl = poster_path
+    ? `${API_BASE_PATH_IMG}${poster_path}`
+    : defaultImage;
 
   return (
     <li className={styles.movieCard}>

@@ -44,7 +44,7 @@ function MovieTrailer(props: MovieTrailerProps) {
   return (
     <div className={styles.detailsContainer}>
       <IconButton aria-label="delete" onClick={() => setOpenModal(true)}>
-        <PlayCircleFilled className={styles.buttonPlay} />
+        <PlayCircleFilled className={styles.buttonPlay} fontSize="large" />
       </IconButton>
     </div>
   );
@@ -106,7 +106,7 @@ export default function MovieDetail(props: Props): ReactElement {
 
   const getMovieById = async (moviedId: string) => {
     const response = await getMovieByIdApi(moviedId);
-    console.log('res by id', response);
+    // console.log('res by id', response);
     setMovie(response);
     setIsLoading(false);
   };
