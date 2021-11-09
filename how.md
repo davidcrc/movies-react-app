@@ -44,7 +44,7 @@ npm install @material-ui/lab
 npm install @material-ui/icons
 ```
 
-## Modal
+## Modal window
 
 
 ```sh
